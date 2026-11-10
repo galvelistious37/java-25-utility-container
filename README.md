@@ -49,6 +49,22 @@ Or run a single command without opening a shell:
 docker run --rm -v "${PWD}:/workspace" -v m2-cache:/root/.m2 java25-utility mvn clean package
 ```
 
+## Using Docker Compose
+
+`docker-compose.yaml` wraps the same setup (image build, bind mount, Maven cache
+volume, interactive terminal):
+
+```powershell
+docker compose run --rm java25-utility                 # interactive shell
+docker compose run --rm java25-utility mvn -version    # single command
+```
+
+By default it mounts this repository's directory. To mount another project:
+
+```powershell
+$env:PROJECT_DIR = "C:\path\to\project"; docker compose run --rm java25-utility
+```
+
 Notes:
 
 - `-v m2-cache:/root/.m2` is a named volume that caches downloaded Maven

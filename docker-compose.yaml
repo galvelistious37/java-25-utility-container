@@ -1,0 +1,14 @@
+services:
+  java25-utility:
+    build: .
+    image: java25-utility
+    stdin_open: true # -i
+    tty: true # -t
+    working_dir: /workspace
+    volumes:
+      # Defaults to this directory; set PROJECT_DIR to mount another project.
+      - ${PROJECT_DIR:-.}:/workspace
+      - m2-cache:/root/.m2
+
+volumes:
+  m2-cache:
